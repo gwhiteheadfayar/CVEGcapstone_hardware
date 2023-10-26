@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Website</title>
+    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/8.5.2/video.js"></script>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <h2> I hope this demos</h2>
+    <video
+        id="livestream"
+        class="video-js vjs-default-skin vjs-big-play-centered"
+        controls
+        autoplay
+        preload="auto"
+        width="640"
+        height="360"
+        data-setup='{ "techOrder": ["html5"], "sources": [{ "type": "rtmp/flv", "src": "rtmp://localhost/live/stream" }] }'>
+        <!-- set ip to local ipv4 on router, changes for each connection-->
+        <!-- there's probably a way to automate this we should do-->
+        <!--uark wifi changes on each connection-->
+        <source src="http://INSERT_IP_HERE/index.m3u8" type="application/x-mpegURL">
+    </video>
+
+    <script>
+        videojs("my-video");
+    </script>
+
+</body>
+</html> 
