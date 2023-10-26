@@ -1,6 +1,4 @@
 # CVEGcapstone_hardware
-The hardware portion of the CVEG Capstone project.
-# CVEGcapstone_hardware
 Fall 2023 - EECS Capstone Project - CVEG Asphalt Emulsion Streaming Platform - Hardware Portion.
 
 HOW TO RUN:
