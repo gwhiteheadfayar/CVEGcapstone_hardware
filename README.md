@@ -16,4 +16,4 @@ HOW TO RUN:
     -put the copied ip in place of "INSERT_IP_HERE"
     -in the CLI, run python -m http.server
 
-4) Do all of the previo
+4) Do all of the previous steps, then go to localhost:8000, or whatever your local ipv4 is with ":8000" at the end to see the site
