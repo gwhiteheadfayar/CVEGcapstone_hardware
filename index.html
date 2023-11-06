@@ -8,23 +8,33 @@
 <body>
     <h1>Welcome to My Website</h1>
     <h2> I hope this demos</h2>
-    <video
-        id="livestream"
-        class="video-js vjs-default-skin vjs-big-play-centered"
-        controls
-        autoplay
-        preload="auto"
-        width="640"
-        height="360"
-        data-setup='{ "techOrder": ["html5"], "sources": [{ "type": "rtmp/flv", "src": "rtmp://localhost/live/stream" }] }'>
-        <!-- set ip to local ipv4 on router, changes for each connection-->
-        <!-- there's probably a way to automate this we should do-->
-        <!--uark wifi changes on each connection-->
-        <source src="http://INSERT_IP_HERE/index.m3u8" type="application/x-mpegURL">
-    </video>
+
+    <video id="stream" autoplay playsinline></video>
 
     <script>
-        videojs("my-video");
+        const videoElement = document.getElementById('stream');
+
+        // Replace with the WebRTC stream URL from your Mediasoup application
+        const streamSource = 'ws://localhost:3000';
+
+        const pc = new RTCPeerConnection();
+        const remoteStream = new MediaStream();
+
+        pc.ontrack = (event) => {
+            remoteStream.addTrack(event.track);
+            videoElement.srcObject = remoteStream;
+        };
+
+        pc.createDataChannel('dummy');
+
+        pc.createOffer().then(offer => pc.setLocalDescription(offer));
+
+        const ws = new WebSocket(streamSource);
+
+        ws.onmessage = (event) => {
+            if (event.data === 'pong') return;
+            pc.setRemoteDescription(JSON.parse(event.data));
+        };
     </script>
 
 </body>
